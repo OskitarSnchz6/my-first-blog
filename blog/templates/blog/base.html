@@ -9,7 +9,14 @@
     </head>
     <body>
         <header class="page-header">
+            <button onclick="location.href='/export_posts_to_excel/'">Export to Excel</button>
             <div class="container">
+                {% if user.is_authenticated %}
+                <h3> {{ request.user }} | <a href="/admin/logout?next=/">Log out</a> </h3>
+                {% else %}
+                    <h3> <a href="/admin/login/?next=/">Log in</a> </h3>
+                {% endif %}
+                
                 {% if user.is_authenticated %}
                     <a href="{% url 'post_new' %}" class="top-menu">
                         {% include './icons/file-earmark-plus.svg' %}
